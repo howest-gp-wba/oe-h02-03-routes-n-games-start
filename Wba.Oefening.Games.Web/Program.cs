@@ -19,9 +19,18 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+//Add custom routing here
+app.MapControllerRoute(
+    name: "Showgames",
+    pattern: "games/all",
+    defaults: new {Controller = "Games", Action = "Index" }
+    );
+app.MapControllerRoute(
+    name: "Showgame",
+    pattern: "games/{id:int}",
+    defaults: new { Controller = "Games", Action = "ShowGame" }
+    );
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 app.Run();
